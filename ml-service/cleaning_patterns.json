@@ -1,0 +1,152 @@
+{
+  "column_mappings": {
+    "description": [
+      "description",
+      "narration",
+      "transaction details",
+      "particulars",
+      "details",
+      "remarks",
+      "transaction",
+      "desc",
+      "txn details",
+      "transaction description"
+    ],
+    "amount": [
+      "amount",
+      "value",
+      "transaction amount"
+    ],
+    "debit": [
+      "debit",
+      "withdrawal",
+      "dr",
+      "paid",
+      "withdraw",
+      "debit amount",
+      "withdrawals",
+      "payment"
+    ],
+    "credit": [
+      "credit",
+      "deposit",
+      "cr",
+      "received",
+      "deposited",
+      "credit amount",
+      "deposits",
+      "receipt"
+    ],
+    "date": [
+      "date",
+      "transaction date",
+      "txn date",
+      "value date",
+      "posting date",
+      "trans date"
+    ],
+    "balance": [
+      "balance",
+      "closing balance",
+      "available balance",
+      "running balance",
+      "bal"
+    ]
+  },
+  "bank_formats": {
+    "HDFC": {
+      "columns": [
+        "transaction details",
+        "debit amount",
+        "credit amount",
+        "balance"
+      ],
+      "first_seen": "2026-02-11T22:56:36.138010",
+      "times_seen": 2,
+      "file_examples": [
+        "test_hdfc.csv",
+        "test_hdfc2.csv"
+      ]
+    },
+    "Format_2": {
+      "columns": [
+        "txn details",
+        "withdrawal",
+        "deposit"
+      ],
+      "first_seen": "2026-02-11T22:56:36.193672",
+      "times_seen": 1,
+      "file_examples": [
+        "test_variations.csv"
+      ]
+    },
+    "ICICI": {
+      "columns": [
+        "particulars",
+        "dr",
+        "cr"
+      ],
+      "first_seen": "2026-02-11T22:56:36.221912",
+      "times_seen": 1,
+      "file_examples": [
+        "test_icici.csv"
+      ]
+    },
+    "SBI": {
+      "columns": [
+        "narration",
+        "paid",
+        "received"
+      ],
+      "first_seen": "2026-02-11T22:56:36.259511",
+      "times_seen": 1,
+      "file_examples": [
+        "test_sbi.csv"
+      ]
+    },
+    "Format_5": {
+      "columns": [
+        "description",
+        "debit",
+        "credit"
+      ],
+      "first_seen": "2026-02-20T15:11:38.664367",
+      "times_seen": 1,
+      "file_examples": [
+        "test_debug.csv"
+      ]
+    },
+    "Format_6": {
+      "columns": [
+        "description",
+        "debit",
+        "credit"
+      ],
+      "first_seen": "2026-02-20T15:12:22.692484",
+      "times_seen": 1,
+      "file_examples": [
+        "test_debug.csv"
+      ]
+    },
+    "Format_7": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-02-23T17:30:25.951914",
+      "times_seen": 1,
+      "file_examples": [
+        "bank_transactions_120.xlsx"
+      ]
+    }
+  },
+  "learned_patterns": [],
+  "statistics": {
+    "files_processed": 8,
+    "formats_learned": 7,
+    "last_updated": "2026-02-23T17:30:25.952190"
+  }
+}

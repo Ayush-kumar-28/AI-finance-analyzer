@@ -1,0 +1,494 @@
+.investment-advice {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.advice-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.back-button:hover {
+  background: white;
+  color: #667eea;
+}
+
+.advice-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Cards */
+.financial-summary-card,
+.risk-profile-card,
+.capacity-card,
+.recommendation-card,
+.projection-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.financial-summary-card h2,
+.risk-profile-card h2,
+.capacity-card h2,
+.recommendations-section h2,
+.projections-section h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* Financial Summary */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.summary-item .label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.summary-item .value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.summary-item.highlight .value {
+  color: #43e97b;
+}
+
+/* Risk Profile */
+.risk-badge {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.risk-description {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+/* Investment Capacity */
+.capacity-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.capacity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f5f7fa;
+  border-radius: 10px;
+}
+
+.capacity-item.highlight {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+}
+
+.capacity-label {
+  font-weight: 600;
+}
+
+.capacity-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Recommendations */
+.recommendations-section {
+  margin-bottom: 2rem;
+}
+
+.recommendations-section h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.rec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.rec-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rec-rank {
+  background: #667eea;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.rec-title h3 {
+  color: #333;
+  margin: 0;
+}
+
+.action-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.action-badge.strongly-recommended {
+  background: #43e97b;
+  color: white;
+}
+
+.action-badge.recommended {
+  background: #667eea;
+  color: white;
+}
+
+.action-badge.consider {
+  background: #f093fb;
+  color: white;
+}
+
+.rec-allocation {
+  text-align: right;
+}
+
+.allocation-amount {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.allocation-percent {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.rec-reason {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f5f7fa;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+}
+
+/* Market Info */
+.market-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+
+.market-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.market-label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.market-value {
+  font-weight: 600;
+  color: #333;
+}
+
+.market-value.up {
+  color: #43e97b;
+}
+
+.market-value.down {
+  color: #fa709a;
+}
+
+/* Projections */
+.projections-section {
+  margin-bottom: 2rem;
+}
+
+.projections-section h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.projections-note {
+  color: white;
+  text-align: center;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.projections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.projection-card h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.scenarios {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.scenario {
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.scenario.conservative {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.scenario.moderate {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.scenario.aggressive {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+}
+
+.scenario-label {
+  font-weight: 600;
+}
+
+.scenario-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* Disclaimer */
+.disclaimer {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+}
+
+.disclaimer strong {
+  font-weight: 700;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  color: white;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .investment-advice {
+    padding: 1rem;
+  }
+
+  .advice-header h1 {
+    font-size: 2rem;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rec-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .rec-allocation {
+    text-align: left;
+  }
+
+  .market-info {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .projections-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Market Signal Badges */
+.signal-badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  text-transform: uppercase;
+}
+
+.signal-badge.strong-buy {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+}
+
+.signal-badge.buy {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.signal-badge.hold {
+  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+  color: white;
+}
+
+.signal-badge.caution {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.signal-badge.sell {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  color: white;
+}
+
+/* Data Source Styling */
+.market-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.market-value.data-source {
+  font-size: 0.8rem;
+  color: #43e97b;
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* Enhanced Action Badge Styling */
+.action-badge.strongly-recommended-buy-now {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  animation: pulse 2s infinite;
+}
+
+.action-badge.recommended-good-entry-point {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.action-badge.consider-monitor-market {
+  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+}
+
+.action-badge.wait-market-uncertain {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.action-badge.avoid-negative-trend {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(67, 233, 123, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(67, 233, 123, 0);
+  }
+}
+
+/* Real-time Data Indicator */
+.market-info::before {
+  content: "📊 Live Market Data";
+  display: block;
+  font-size: 0.85rem;
+  color: #43e97b;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: rgba(67, 233, 123, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
