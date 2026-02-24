@@ -7,38 +7,38 @@ function InvestmentAdvice({ financialData, onBack }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchInvestmentAdvice();
-  }, []);
+    const fetchInvestmentAdvice = async () => {
+      setLoading(true);
+      setError(null);
 
-  const fetchInvestmentAdvice = async () => {
-    setLoading(true);
-    setError(null);
+      try {
+        const response = await fetch('/api/investment/advice', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            balance: financialData.remaining_balance,
+            income: financialData.income,
+            expense: financialData.expense
+          })
+        });
 
-    try {
-      const response = await fetch('/api/investment/advice', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          balance: financialData.remaining_balance,
-          income: financialData.income,
-          expense: financialData.expense
-        })
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setAdvice(data);
-      } else {
-        setError('Failed to fetch investment advice');
+        if (response.ok) {
+          const data = await response.json();
+          setAdvice(data);
+        } else {
+          setError('Failed to fetch investment advice');
+        }
+      } catch (err) {
+        setError('Error connecting to server');
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      setError('Error connecting to server');
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+
+    fetchInvestmentAdvice();
+  }, [financialData]);
 
   const formatCurrency = (value) => {
     return `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
