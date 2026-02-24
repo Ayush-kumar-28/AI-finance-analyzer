@@ -1,0 +1,106 @@
+{
+  "column_mappings": {
+    "description": [
+      "description",
+      "narration",
+      "transaction details",
+      "particulars",
+      "details",
+      "remarks",
+      "transaction",
+      "desc",
+      "txn details",
+      "transaction description"
+    ],
+    "amount": [
+      "amount",
+      "value",
+      "transaction amount"
+    ],
+    "debit": [
+      "debit",
+      "withdrawal",
+      "dr",
+      "paid",
+      "withdraw",
+      "debit amount",
+      "withdrawals",
+      "payment"
+    ],
+    "credit": [
+      "credit",
+      "deposit",
+      "cr",
+      "received",
+      "deposited",
+      "credit amount",
+      "deposits",
+      "receipt"
+    ],
+    "date": [
+      "date",
+      "transaction date",
+      "txn date",
+      "value date",
+      "posting date",
+      "trans date"
+    ],
+    "balance": [
+      "balance",
+      "closing balance",
+      "available balance",
+      "running balance",
+      "bal"
+    ]
+  },
+  "bank_formats": {
+    "Format_1": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-02-23T18:10:09.098379",
+      "times_seen": 1,
+      "file_examples": [
+        "tmp9rz7man8.xlsx"
+      ]
+    },
+    "Format_2": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-02-24T11:18:02.523219",
+      "times_seen": 1,
+      "file_examples": [
+        "tmp4l9zvd6z.xlsx"
+      ]
+    },
+    "Format_3": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-02-24T11:20:10.547626",
+      "times_seen": 1,
+      "file_examples": [
+        "tmp06gkrlf1.xlsx"
+      ]
+    }
+  },
+  "learned_patterns": [],
+  "statistics": {
+    "files_processed": 3,
+    "formats_learned": 3,
+    "last_updated": "2026-02-24T11:20:10.547879"
+  }
+}

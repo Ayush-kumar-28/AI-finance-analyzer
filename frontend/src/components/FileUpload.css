@@ -145,6 +145,12 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .features-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .file-upload-container {
     padding: 1rem;
@@ -174,9 +180,64 @@
   .dropzone-text {
     font-size: 1.1rem;
   }
+  
+  .dropzone-subtext {
+    font-size: 0.9rem;
+  }
 
   .features-list {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-upload-container {
+    padding: 0.75rem;
+  }
+  
+  .upload-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .upload-section h2 {
+    font-size: 1.3rem;
+  }
+  
+  .upload-description {
+    font-size: 0.95rem;
+  }
+  
+  .dropzone {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .upload-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .dropzone-text {
+    font-size: 1rem;
+  }
+  
+  .dropzone-subtext {
+    font-size: 0.85rem;
+  }
+  
+  .feature-item {
+    padding: 0.75rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.5rem;
+  }
+  
+  .feature-item strong {
+    font-size: 0.95rem;
+  }
+  
+  .feature-item p {
+    font-size: 0.85rem;
   }
 }

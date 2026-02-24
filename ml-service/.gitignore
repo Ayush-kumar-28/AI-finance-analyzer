@@ -1,0 +1,26 @@
+# Firebase credentials - NEVER commit these!
+firebase-credentials.json
+firebase-adminsdk-*.json
+serviceAccountKey.json
+
+# Environment files
+.env
+.env.local
+.env.firebase
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+temp/

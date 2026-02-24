@@ -369,6 +369,20 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .projections-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .market-info {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .investment-advice {
     padding: 1rem;
@@ -377,9 +391,17 @@
   .advice-header h1 {
     font-size: 2rem;
   }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
 
   .summary-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .summary-item .value {
+    font-size: 1.5rem;
   }
 
   .rec-header {
@@ -390,6 +412,10 @@
   .rec-allocation {
     text-align: left;
   }
+  
+  .allocation-amount {
+    font-size: 1.5rem;
+  }
 
   .market-info {
     grid-template-columns: 1fr 1fr;
@@ -397,6 +423,130 @@
 
   .projections-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .financial-summary-card,
+  .risk-profile-card,
+  .capacity-card,
+  .recommendation-card,
+  .projection-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .investment-advice {
+    padding: 0.75rem;
+  }
+  
+  .advice-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .back-button {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.95rem;
+  }
+  
+  .financial-summary-card,
+  .risk-profile-card,
+  .capacity-card,
+  .recommendation-card,
+  .projection-card {
+    padding: 1.25rem;
+  }
+  
+  .financial-summary-card h2,
+  .risk-profile-card h2,
+  .capacity-card h2,
+  .recommendations-section h2,
+  .projections-section h2 {
+    font-size: 1.3rem;
+  }
+  
+  .summary-item .value {
+    font-size: 1.3rem;
+  }
+  
+  .summary-item .label {
+    font-size: 0.85rem;
+  }
+  
+  .risk-badge {
+    padding: 0.6rem 1.25rem;
+    font-size: 1rem;
+  }
+  
+  .risk-description {
+    font-size: 0.95rem;
+  }
+  
+  .capacity-item {
+    padding: 0.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .capacity-value {
+    font-size: 1.3rem;
+  }
+  
+  .rec-rank {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+  }
+  
+  .rec-title h3 {
+    font-size: 1.1rem;
+  }
+  
+  .action-badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .allocation-amount {
+    font-size: 1.3rem;
+  }
+  
+  .allocation-percent {
+    font-size: 1rem;
+  }
+  
+  .rec-reason {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+  
+  .market-info {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .market-label {
+    font-size: 0.8rem;
+  }
+  
+  .scenario {
+    padding: 0.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .scenario-value {
+    font-size: 1.2rem;
+  }
+  
+  .disclaimer {
+    padding: 1.25rem;
+    font-size: 0.9rem;
   }
 }
 
