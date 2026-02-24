@@ -12,7 +12,8 @@ function InvestmentAdvice({ financialData, onBack }) {
       setError(null);
 
       try {
-        const response = await fetch('/api/investment/advice', {
+        const apiUrl = process.env.REACT_APP_API_URL || '';
+        const response = await fetch(`${apiUrl}/api/investment/advice`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

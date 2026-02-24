@@ -4,6 +4,7 @@ import FileUpload from './components/FileUpload';
 import Dashboard from './components/Dashboard';
 import InvestmentAdvice from './components/InvestmentAdvice';
 import axios from 'axios';
+import config from './config';
 
 function App() {
   const [data, setData] = useState(null);
@@ -20,7 +21,8 @@ function App() {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('/api/analyze', formData, {
+      const apiUrl = `${config.apiBaseUrl}${config.endpoints.analyze}`;
+      const response = await axios.post(apiUrl, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
