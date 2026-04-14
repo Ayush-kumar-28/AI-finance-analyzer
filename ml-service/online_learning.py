@@ -11,9 +11,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 import sys
 
-# Add parent directory to path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from training.text_cleaner import clean_text
+# Add parent directory and training directory to path
+_project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(_project_root)
+sys.path.append(os.path.join(_project_root, 'training'))
+from text_cleaner import clean_text
 
 class OnlineLearner:
     """

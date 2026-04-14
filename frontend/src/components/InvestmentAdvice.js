@@ -10,47 +10,40 @@ function InvestmentAdvice({ financialData, onBack }) {
     const fetchInvestmentAdvice = async () => {
       setLoading(true);
       setError(null);
-
       try {
         const apiUrl = process.env.REACT_APP_API_URL || '';
         const response = await fetch(`${apiUrl}/api/investment/advice`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             balance: financialData.remaining_balance,
             income: financialData.income,
-            expense: financialData.expense
-          })
+            expense: financialData.expense,
+          }),
         });
-
         if (response.ok) {
-          const data = await response.json();
-          setAdvice(data);
+          setAdvice(await response.json());
         } else {
           setError('Failed to fetch investment advice');
         }
-      } catch (err) {
+      } catch {
         setError('Error connecting to server');
       } finally {
         setLoading(false);
       }
     };
-
     fetchInvestmentAdvice();
   }, [financialData]);
 
-  const formatCurrency = (value) => {
-    return `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
-  };
+  const formatCurrency = (value) =>
+    `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 
   if (loading) {
     return (
       <div className="investment-advice">
         <div className="loading-container">
-          <div className="spinner"></div>
-          <p>Analyzing your finances and market conditions...</p>
+          <div className="spinner" />
+          <p className="loading-text">Analyzing your finances and market conditions…</p>
         </div>
       </div>
     );
@@ -61,7 +54,7 @@ function InvestmentAdvice({ financialData, onBack }) {
       <div className="investment-advice">
         <div className="error-container">
           <p>{error}</p>
-          <button onClick={onBack}>Go Back</button>
+          <button onClick={onBack}>← Go Back</button>
         </div>
       </div>
     );
@@ -69,16 +62,21 @@ function InvestmentAdvice({ financialData, onBack }) {
 
   return (
     <div className="investment-advice">
-      <div className="advice-header">
+      {/* Top Nav */}
+      <div className="advice-topnav">
         <button className="back-button" onClick={onBack}>
           ← Back to Dashboard
         </button>
-        <h1>💰 Investment Advice</h1>
-        <p className="subtitle">Personalized recommendations based on your financial situation</p>
+        <div className="advice-page-title">
+          <h1>💰 Investment Advice</h1>
+          <span className="subtitle">
+            Personalized recommendations based on your financial situation
+          </span>
+        </div>
       </div>
 
-      {/* Financial Summary */}
-      <div className="financial-summary-card">
+      {/* Financial Overview */}
+      <div className="advice-card">
         <h2>Your Financial Overview</h2>
         <div className="summary-grid">
           <div className="summary-item">
@@ -101,14 +99,16 @@ function InvestmentAdvice({ financialData, onBack }) {
       </div>
 
       {/* Risk Profile */}
-      <div className="risk-profile-card">
+      <div className="advice-card">
         <h2>Your Risk Profile</h2>
-        <div className="risk-badge">{advice.risk_profile} Risk</div>
-        <p className="risk-description">{advice.advice_summary}</p>
+        <div className="risk-content">
+          <div className="risk-badge">{advice.risk_profile} Risk</div>
+          <p className="risk-description">{advice.advice_summary}</p>
+        </div>
       </div>
 
       {/* Investment Capacity */}
-      <div className="capacity-card">
+      <div className="advice-card">
         <h2>Investment Capacity</h2>
         <div className="capacity-breakdown">
           <div className="capacity-item">
@@ -128,18 +128,27 @@ function InvestmentAdvice({ financialData, onBack }) {
 
       {/* Recommendations */}
       <div className="recommendations-section">
-        <h2>📊 Recommended Investment Portfolio</h2>
+        <p className="section-heading">📊 Recommended Investment Portfolio</p>
         {advice.recommendations.map((rec, index) => (
           <div key={index} className="recommendation-card">
             <div className="rec-header">
               <div className="rec-title">
                 <span className="rec-rank">#{rec.rank}</span>
                 <h3>{rec.investment}</h3>
-                <span className={`action-badge ${rec.action.toLowerCase().replace(/ /g, '-').replace('---', '-')}`}>
+                <span
+                  className={`action-badge ${rec.action
+                    .toLowerCase()
+                    .replace(/ /g, '-')
+                    .replace('---', '-')}`}
+                >
                   {rec.action}
                 </span>
                 {rec.market_signal && (
-                  <span className={`signal-badge ${rec.market_signal.toLowerCase().replace(/ /g, '-')}`}>
+                  <span
+                    className={`signal-badge ${rec.market_signal
+                      .toLowerCase()
+                      .replace(/ /g, '-')}`}
+                  >
                     {rec.market_signal}
                   </span>
                 )}
@@ -184,13 +193,12 @@ function InvestmentAdvice({ financialData, onBack }) {
 
       {/* Projections */}
       <div className="projections-section">
-        <h2>📈 Potential Returns</h2>
+        <p className="section-heading">📈 Potential Returns</p>
         <p className="projections-note">{advice.projections.note}</p>
-        
         <div className="projections-grid">
           {Object.entries(advice.projections.projections).map(([period, scenarios]) => (
             <div key={period} className="projection-card">
-              <h3>{period.replace('_', ' ').toUpperCase()}</h3>
+              <h3>{period.replace('_', ' ')}</h3>
               <div className="scenarios">
                 <div className="scenario conservative">
                   <span className="scenario-label">Conservative (8%)</span>
@@ -212,10 +220,9 @@ function InvestmentAdvice({ financialData, onBack }) {
 
       {/* Disclaimer */}
       <div className="disclaimer">
-        <p>
-          ⚠️ <strong>Disclaimer:</strong> This advice is for informational purposes only and should not be considered as financial advice. 
-          Market conditions change rapidly. Please consult with a certified financial advisor before making investment decisions.
-        </p>
+        ⚠️ <strong>Disclaimer:</strong> This advice is for informational purposes only and should
+        not be considered as financial advice. Market conditions change rapidly. Please consult
+        with a certified financial advisor before making investment decisions.
       </div>
     </div>
   );

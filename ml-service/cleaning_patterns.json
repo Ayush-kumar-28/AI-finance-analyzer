@@ -141,12 +141,70 @@
       "file_examples": [
         "bank_transactions_120.xlsx"
       ]
+    },
+    "Format_8": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-03-23T17:29:03.189962",
+      "times_seen": 1,
+      "file_examples": [
+        "tmp4ks8ejm1.xlsx"
+      ]
+    },
+    "Format_9": {
+      "columns": [
+        "date",
+        "description",
+        "category",
+        "credit",
+        "debit",
+        "balance"
+      ],
+      "first_seen": "2026-03-23T17:45:23.110204",
+      "times_seen": 1,
+      "file_examples": [
+        "tmpc4xo3swo.xlsx"
+      ]
+    },
+    "Format_10": {
+      "columns": [
+        "date",
+        "description",
+        "category",
+        "credit",
+        "debit",
+        "balance"
+      ],
+      "first_seen": "2026-03-24T13:00:09.913547",
+      "times_seen": 1,
+      "file_examples": [
+        "tmpufbqoxsx.xlsx"
+      ]
+    },
+    "Format_11": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-04-04T17:12:21.731595",
+      "times_seen": 1,
+      "file_examples": [
+        "tmplsqmv8_9.xlsx"
+      ]
     }
   },
   "learned_patterns": [],
   "statistics": {
-    "files_processed": 8,
-    "formats_learned": 7,
-    "last_updated": "2026-02-23T17:30:25.952190"
+    "files_processed": 12,
+    "formats_learned": 11,
+    "last_updated": "2026-04-04T17:12:21.731866"
   }
 }

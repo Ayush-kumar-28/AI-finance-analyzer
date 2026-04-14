@@ -1,124 +1,254 @@
+/* ============================================================
+   APP SHELL
+   ============================================================ */
 .App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-bg-primary);
+  position: relative;
+  overflow-x: hidden;
 }
 
+/* Decorative glow orbs — fixed so they don't scroll */
+.App::before {
+  content: '';
+  position: fixed;
+  top: -180px;
+  right: -120px;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.13) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.App::after {
+  content: '';
+  position: fixed;
+  bottom: -140px;
+  left: -100px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.11) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dot grid overlay */
+.App-bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content sits above decorative layers */
+.App-header,
+.App-main,
+.App-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
 .App-header {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  text-align: center;
-  color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 12, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 var(--space-8);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.App-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
 }
 
-.App-header p {
+.header-logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-accent-blue) 0%, var(--color-accent-purple) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.1rem;
-  opacity: 0.9;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-blue-glow);
 }
 
+.header-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.header-brand-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.header-brand-tag {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-accent-blue);
+  line-height: 1;
+}
+
+.header-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-accent-blue-dim);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent-blue);
+}
+
+.header-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent-green);
+  animation: pulse-dot 2s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.85); }
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
 .App-main {
   flex: 1;
-  padding: 2rem;
+  padding: var(--space-8);
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
 }
 
+/* ============================================================
+   FOOTER
+   ============================================================ */
 .App-footer {
-  background: rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  text-align: center;
-  color: white;
-  font-size: 0.9rem;
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
 }
 
+.App-footer p {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.App-footer span {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.App-footer a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+}
+
+/* ============================================================
+   LOADING STATE
+   ============================================================ */
 .loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 400px;
-  color: white;
+  min-height: 480px;
+  gap: var(--space-5);
+}
+
+.loading-spinner-wrap {
+  position: relative;
+  width: 56px;
+  height: 56px;
 }
 
 .spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent-blue);
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-inner {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  border-bottom-color: var(--color-accent-purple);
+  animation: spin 1.4s linear infinite reverse;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
-.loading-container p {
-  font-size: 1.2rem;
-  margin-top: 1rem;
+.loading-text {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
 }
 
-/* Tablet */
+.loading-subtext {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: -12px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 1024px) {
-  .App-header {
-    padding: 1.5rem;
-  }
-  
-  .App-header h1 {
-    font-size: 2.2rem;
-  }
-  
-  .App-main {
-    padding: 1.5rem;
-  }
+  .App-main { padding: var(--space-6); }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   .App-header {
-    padding: 1rem;
+    padding: 0 var(--space-4);
+    height: 56px;
   }
-  
-  .App-header h1 {
-    font-size: 1.8rem;
-  }
-  
-  .App-header p {
-    font-size: 1rem;
-  }
-  
-  .App-main {
-    padding: 1rem;
-  }
+  .App-main { padding: var(--space-4); }
+  .App-footer { padding: var(--space-3) var(--space-4); }
+  .header-brand-name { font-size: 0.85rem; }
+  .header-brand-tag  { display: none; }
 }
 
-/* Small Mobile */
 @media (max-width: 480px) {
-  .App-header h1 {
-    font-size: 1.5rem;
-  }
-  
-  .App-header p {
-    font-size: 0.9rem;
-  }
-  
-  .App-main {
-    padding: 0.75rem;
-  }
-  
-  .App-footer {
-    font-size: 0.8rem;
-    padding: 0.75rem;
-  }
+  .App-main { padding: var(--space-3); }
+  .header-badge { display: none; }
 }

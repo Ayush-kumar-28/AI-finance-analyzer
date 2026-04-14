@@ -16,7 +16,9 @@ class AdaptiveDataCleaner:
     to automatically handle different bank statement formats.
     """
     
-    def __init__(self, config_file: str = 'ml-service/cleaning_patterns.json'):
+    def __init__(self, config_file: str = None):
+        if config_file is None:
+            config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cleaning_patterns.json')
         self.config_file = config_file
         self.patterns = self._load_patterns()
         
@@ -67,7 +69,9 @@ class AdaptiveDataCleaner:
     def _save_patterns(self):
         """Save learned patterns to file."""
         try:
-            os.makedirs(os.path.dirname(self.config_file), exist_ok=True)
+            dir_name = os.path.dirname(self.config_file)
+            if dir_name:
+                os.makedirs(dir_name, exist_ok=True)
             with open(self.config_file, 'w') as f:
                 json.dump(self.patterns, f, indent=2)
         except Exception as e:

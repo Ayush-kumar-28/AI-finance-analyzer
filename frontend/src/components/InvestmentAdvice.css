@@ -1,644 +1,576 @@
+/* ============================================================
+   INVESTMENT ADVICE — Dark Premium
+   ============================================================ */
+
 .investment-advice {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeSlideUp 0.4s ease both;
 }
 
-.advice-header {
-  text-align: center;
-  color: white;
-  margin-bottom: 2rem;
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.advice-topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-8);
+  gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
 .back-button {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 2px solid white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.5rem 1rem;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-hover);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 1rem;
+  transition: all var(--transition-base);
 }
 
 .back-button:hover {
-  background: white;
-  color: #667eea;
+  background: var(--color-bg-card-elevated);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-active);
+  transform: translateX(-2px);
 }
 
-.advice-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+.advice-page-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
 }
 
-.subtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
-}
-
-/* Cards */
-.financial-summary-card,
-.risk-profile-card,
-.capacity-card,
-.recommendation-card,
-.projection-card {
-  background: white;
-  border-radius: 15px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.financial-summary-card h2,
-.risk-profile-card h2,
-.capacity-card h2,
-.recommendations-section h2,
-.projections-section h2 {
-  color: #333;
-  margin-bottom: 1.5rem;
+.advice-page-title h1 {
   font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
 }
 
-/* Financial Summary */
+.advice-page-title .subtitle {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   SHARED CARD BASE
+   ============================================================ */
+.advice-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-5);
+  transition: border-color var(--transition-base);
+}
+
+.advice-card:hover { border-color: var(--color-border-hover); }
+
+.advice-card h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-5);
+}
+
+/* ============================================================
+   FINANCIAL SUMMARY
+   ============================================================ */
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
 }
 
 .summary-item {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.summary-item.highlight {
+  background: var(--color-accent-green-dim);
+  border-color: rgba(16, 185, 129, 0.2);
 }
 
 .summary-item .label {
-  color: #666;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
 }
 
 .summary-item .value {
-  font-size: 1.8rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  color: #333;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
-.summary-item.highlight .value {
-  color: #43e97b;
+.summary-item.highlight .value { color: var(--color-accent-green); }
+
+/* ============================================================
+   RISK PROFILE
+   ============================================================ */
+.risk-content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
 }
 
-/* Risk Profile */
 .risk-badge {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
   font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  font-size: 0.875rem;
+  background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+  color: #fff;
+  white-space: nowrap;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.2);
+  flex-shrink: 0;
 }
 
 .risk-description {
-  color: #666;
-  line-height: 1.6;
-  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  font-size: 0.9rem;
 }
 
-/* Investment Capacity */
+/* ============================================================
+   INVESTMENT CAPACITY
+   ============================================================ */
 .capacity-breakdown {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
 }
 
 .capacity-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background: #f5f7fa;
-  border-radius: 10px;
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  gap: var(--space-3);
 }
 
 .capacity-item.highlight {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-  color: white;
+  background: var(--color-accent-green-dim);
+  border-color: rgba(16, 185, 129, 0.2);
 }
 
 .capacity-label {
+  font-size: 0.82rem;
   font-weight: 600;
+  color: var(--color-text-secondary);
 }
+
+.capacity-item.highlight .capacity-label { color: var(--color-accent-green); }
 
 .capacity-value {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
 }
 
-/* Recommendations */
+.capacity-item.highlight .capacity-value { color: var(--color-accent-green); }
+
+/* ============================================================
+   RECOMMENDATIONS
+   ============================================================ */
 .recommendations-section {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-5);
 }
 
-.recommendations-section h2 {
-  color: white;
-  text-align: center;
-  margin-bottom: 2rem;
+.section-heading {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.recommendation-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-4);
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.recommendation-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
 }
 
 .rec-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
+  gap: var(--space-4);
 }
 
 .rec-title {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 .rec-rank {
-  background: #667eea;
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-blue-dim);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: var(--color-accent-blue);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
+  flex-shrink: 0;
 }
 
 .rec-title h3 {
-  color: #333;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .action-badge {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #fff;
 }
 
-.action-badge.strongly-recommended {
-  background: #43e97b;
-  color: white;
+.action-badge.strongly-recommended,
+.action-badge.strongly-recommended-buy-now {
+  background: var(--color-accent-green);
 }
 
-.action-badge.recommended {
-  background: #667eea;
-  color: white;
+.action-badge.recommended,
+.action-badge.recommended-good-entry-point {
+  background: var(--color-accent-blue);
 }
 
-.action-badge.consider {
-  background: #f093fb;
-  color: white;
+.action-badge.consider,
+.action-badge.consider-monitor-market {
+  background: var(--color-accent-gold);
+  color: #111;
 }
 
-.rec-allocation {
-  text-align: right;
+.action-badge.wait-market-uncertain {
+  background: var(--color-accent-purple);
 }
+
+.action-badge.avoid-negative-trend {
+  background: var(--color-accent-red);
+}
+
+.signal-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.signal-badge.strong-buy { background: var(--color-accent-green-dim); color: var(--color-accent-green); border: 1px solid rgba(16,185,129,0.25); }
+.signal-badge.buy        { background: var(--color-accent-blue-dim);  color: var(--color-accent-blue);  border: 1px solid rgba(59,130,246,0.25); }
+.signal-badge.hold       { background: var(--color-accent-gold-dim);  color: var(--color-accent-gold);  border: 1px solid rgba(245,158,11,0.25); }
+.signal-badge.caution    { background: var(--color-accent-red-dim);   color: var(--color-accent-red);   border: 1px solid rgba(244,63,94,0.25); }
+.signal-badge.sell       { background: var(--color-accent-red-dim);   color: var(--color-accent-red);   border: 1px solid rgba(244,63,94,0.25); }
+
+.rec-allocation { text-align: right; flex-shrink: 0; }
 
 .allocation-amount {
   display: block;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #333;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
 .allocation-percent {
-  color: #666;
-  font-size: 1.1rem;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
 }
 
 .rec-reason {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: #f5f7fa;
-  border-radius: 10px;
-  border-left: 4px solid #667eea;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  font-size: 0.875rem;
+  margin-bottom: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  border-left: 2px solid var(--color-accent-blue);
 }
 
-/* Market Info */
+/* ---- Market info grid ---- */
 .market-info {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-  background: #f9f9f9;
-  border-radius: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
 
-.market-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
+.market-item { display: flex; flex-direction: column; gap: 3px; }
+
+.market-item.full-width { grid-column: 1 / -1; }
 
 .market-label {
-  font-size: 0.85rem;
-  color: #666;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
 }
 
 .market-value {
+  font-size: 0.875rem;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
 }
 
-.market-value.up {
-  color: #43e97b;
+.market-value.up   { color: var(--color-accent-green); }
+.market-value.down { color: var(--color-accent-red); }
+
+.market-value.data-source {
+  font-size: 0.78rem;
+  color: var(--color-accent-blue);
+  font-style: italic;
 }
 
-.market-value.down {
-  color: #fa709a;
-}
-
-/* Projections */
-.projections-section {
-  margin-bottom: 2rem;
-}
-
-.projections-section h2 {
-  color: white;
-  text-align: center;
-  margin-bottom: 1rem;
-}
+/* ============================================================
+   PROJECTIONS
+   ============================================================ */
+.projections-section { margin-bottom: var(--space-5); }
 
 .projections-note {
-  color: white;
-  text-align: center;
-  opacity: 0.9;
-  margin-bottom: 2rem;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
 }
 
 .projections-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
 }
+
+.projection-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: border-color var(--transition-base);
+}
+
+.projection-card:hover { border-color: var(--color-border-hover); }
 
 .projection-card h3 {
-  color: #333;
-  margin-bottom: 1rem;
-  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
 }
 
-.scenarios {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+.scenarios { display: flex; flex-direction: column; gap: var(--space-3); }
 
 .scenario {
-  padding: 1rem;
-  border-radius: 10px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--space-3);
 }
 
 .scenario.conservative {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
 }
 
 .scenario.moderate {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--color-accent-blue-dim);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .scenario.aggressive {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-  color: white;
+  background: var(--color-accent-green-dim);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .scenario-label {
+  font-size: 0.8rem;
   font-weight: 600;
+  color: var(--color-text-secondary);
 }
+
+.scenario.moderate  .scenario-label { color: var(--color-accent-blue); }
+.scenario.aggressive .scenario-label { color: var(--color-accent-green); }
 
 .scenario-value {
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   font-weight: 700;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
 }
 
-/* Disclaimer */
+.scenario.moderate  .scenario-value { color: var(--color-accent-blue); }
+.scenario.aggressive .scenario-value { color: var(--color-accent-green); }
+
+/* ============================================================
+   DISCLAIMER
+   ============================================================ */
 .disclaimer {
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid white;
-  border-radius: 15px;
-  padding: 1.5rem;
-  color: white;
-  text-align: center;
+  background: rgba(245, 158, 11, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  margin-bottom: var(--space-8);
 }
 
-.disclaimer strong {
-  font-weight: 700;
-}
+.disclaimer strong { color: var(--color-accent-gold); font-weight: 600; }
 
-/* Loading */
+/* ============================================================
+   LOADING / ERROR
+   ============================================================ */
 .loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 50vh;
-  color: white;
+  min-height: 400px;
+  gap: var(--space-5);
 }
 
 .spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
+  border: 2px solid var(--color-border-hover);
+  border-top-color: var(--color-accent-blue);
+  animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-text {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
 }
 
-/* Responsive */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.error-container p {
+  color: var(--color-accent-red);
+  font-size: 0.95rem;
+}
+
+.error-container button {
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-hover);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.error-container button:hover {
+  background: var(--color-bg-card-elevated);
+  border-color: var(--color-border-active);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 1024px) {
-  .summary-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .projections-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .market-info {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .projections-grid { grid-template-columns: 1fr; }
+  .market-info { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-  .investment-advice {
-    padding: 1rem;
-  }
-
-  .advice-header h1 {
-    font-size: 2rem;
-  }
-  
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .summary-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .summary-item .value {
-    font-size: 1.5rem;
-  }
-
-  .rec-header {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .rec-allocation {
-    text-align: left;
-  }
-  
-  .allocation-amount {
-    font-size: 1.5rem;
-  }
-
-  .market-info {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .projections-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .financial-summary-card,
-  .risk-profile-card,
-  .capacity-card,
-  .recommendation-card,
-  .projection-card {
-    padding: 1.5rem;
-  }
+  .advice-topnav { flex-direction: column; align-items: flex-start; }
+  .advice-page-title { align-items: flex-start; text-align: left; }
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .capacity-breakdown { grid-template-columns: 1fr; }
+  .risk-content { flex-direction: column; }
+  .rec-header { flex-direction: column; }
+  .rec-allocation { text-align: left; }
+  .allocation-amount { font-size: 1.3rem; }
+  .market-info { grid-template-columns: repeat(2, 1fr); }
+  .advice-card { padding: var(--space-4); }
+  .recommendation-card { padding: var(--space-4); }
 }
 
 @media (max-width: 480px) {
-  .investment-advice {
-    padding: 0.75rem;
-  }
-  
-  .advice-header h1 {
-    font-size: 1.6rem;
-  }
-  
-  .subtitle {
-    font-size: 0.95rem;
-  }
-  
-  .back-button {
-    padding: 0.6rem 1.25rem;
-    font-size: 0.95rem;
-  }
-  
-  .financial-summary-card,
-  .risk-profile-card,
-  .capacity-card,
-  .recommendation-card,
-  .projection-card {
-    padding: 1.25rem;
-  }
-  
-  .financial-summary-card h2,
-  .risk-profile-card h2,
-  .capacity-card h2,
-  .recommendations-section h2,
-  .projections-section h2 {
-    font-size: 1.3rem;
-  }
-  
-  .summary-item .value {
-    font-size: 1.3rem;
-  }
-  
-  .summary-item .label {
-    font-size: 0.85rem;
-  }
-  
-  .risk-badge {
-    padding: 0.6rem 1.25rem;
-    font-size: 1rem;
-  }
-  
-  .risk-description {
-    font-size: 0.95rem;
-  }
-  
-  .capacity-item {
-    padding: 0.75rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .capacity-value {
-    font-size: 1.3rem;
-  }
-  
-  .rec-rank {
-    width: 35px;
-    height: 35px;
-    font-size: 1.1rem;
-  }
-  
-  .rec-title h3 {
-    font-size: 1.1rem;
-  }
-  
-  .action-badge {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.75rem;
-  }
-  
-  .allocation-amount {
-    font-size: 1.3rem;
-  }
-  
-  .allocation-percent {
-    font-size: 1rem;
-  }
-  
-  .rec-reason {
-    font-size: 0.9rem;
-    padding: 0.75rem;
-  }
-  
-  .market-info {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-  
-  .market-label {
-    font-size: 0.8rem;
-  }
-  
-  .scenario {
-    padding: 0.75rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .scenario-value {
-    font-size: 1.2rem;
-  }
-  
-  .disclaimer {
-    padding: 1.25rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* Market Signal Badges */
-.signal-badge {
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  margin-left: 0.5rem;
-  text-transform: uppercase;
-}
-
-.signal-badge.strong-buy {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-  color: white;
-}
-
-.signal-badge.buy {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  color: white;
-}
-
-.signal-badge.hold {
-  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
-  color: white;
-}
-
-.signal-badge.caution {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
-}
-
-.signal-badge.sell {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-  color: white;
-}
-
-/* Data Source Styling */
-.market-item.full-width {
-  grid-column: 1 / -1;
-}
-
-.market-value.data-source {
-  font-size: 0.8rem;
-  color: #43e97b;
-  font-weight: 600;
-  font-style: italic;
-}
-
-/* Enhanced Action Badge Styling */
-.action-badge.strongly-recommended-buy-now {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-  animation: pulse 2s infinite;
-}
-
-.action-badge.recommended-good-entry-point {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-.action-badge.consider-monitor-market {
-  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
-}
-
-.action-badge.wait-market-uncertain {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.action-badge.avoid-negative-trend {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-}
-
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(67, 233, 123, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(67, 233, 123, 0);
-  }
-}
-
-/* Real-time Data Indicator */
-.market-info::before {
-  content: "📊 Live Market Data";
-  display: block;
-  font-size: 0.85rem;
-  color: #43e97b;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  background: rgba(67, 233, 123, 0.1);
-  border-radius: 8px;
-  text-align: center;
+  .summary-grid { grid-template-columns: 1fr; }
+  .advice-page-title h1 { font-size: 1.25rem; }
+  .market-info { grid-template-columns: 1fr; }
+  .summary-item .value { font-size: 1.15rem; }
+  .scenario { flex-direction: column; align-items: flex-start; gap: var(--space-1); }
 }

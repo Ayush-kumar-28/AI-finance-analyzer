@@ -6,6 +6,7 @@ Handles file upload and ML classification with PostgreSQL storage
 from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from contextlib import asynccontextmanager
 from sqlalchemy.orm import Session
 import sys
 import os
@@ -26,36 +27,17 @@ from investment_advisor import advisor
 from database import get_db, init_db
 from db_manager import DatabaseManager
 
-# Initialize FastAPI app
-app = FastAPI(
-    title="Finance Tracker ML API",
-    description="Machine Learning service for transaction classification",
-    version="1.0.0"
-)
-
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # In production, specify exact origins
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 # Initialize ML classifier and cleaning pipeline (load once at startup)
 classifier = None
 cleaning_pipeline = None
 
-@app.on_event("startup")
-async def startup_event():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     """Load ML model, initialize pipeline, and setup database on startup"""
     global classifier, cleaning_pipeline
     try:
-        # Initialize database
         init_db()
         print("✅ Database initialized")
-        
-        # Load ML models
         classifier = TransactionClassifier()
         cleaning_pipeline = DataCleaningPipeline()
         print("✅ ML model loaded successfully")
@@ -63,6 +45,25 @@ async def startup_event():
     except Exception as e:
         print(f"❌ Failed to initialize: {e}")
         raise
+    yield
+    # Shutdown logic (if needed) goes here
+
+# Initialize FastAPI app
+app = FastAPI(
+    title="Finance Tracker ML API",
+    description="Machine Learning service for transaction classification",
+    version="1.0.0",
+    lifespan=lifespan
+)
+
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():

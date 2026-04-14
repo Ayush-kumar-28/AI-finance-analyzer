@@ -8,7 +8,7 @@ REM Get the directory where this batch file is located
 set "PROJECT_DIR=%~dp0"
 
 echo [1/4] Starting FastAPI ML Service...
-start "ML Service" cmd /k "cd /d "%PROJECT_DIR%ml-service" && python main.py"
+start "ML Service" cmd /k "cd /d "%PROJECT_DIR%ml-service" && "%PROJECT_DIR%venv\Scripts\python.exe" -m uvicorn main:app --host 0.0.0.0 --port 8000"
 timeout /t 5 /nobreak > nul
 
 echo [2/4] Starting Backend API Gateway...

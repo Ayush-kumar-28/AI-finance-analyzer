@@ -3,8 +3,7 @@ Database configuration and models using SQLAlchemy ORM
 """
 
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, Text, Boolean
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 from datetime import datetime
 import os
 from dotenv import load_dotenv
