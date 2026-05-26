@@ -124,8 +124,8 @@ function FileUpload({ onFileUpload, error }) {
         <div className="hero-illustration-wrap">
           <div className="hero-illustration-frame">
             <img
-              src="https://pixabay.com/get/g603b3949a6f13aefcdf0440a5667a3eac3d396fb1082520f83101fdcee95cc4907fe83e7bf7b0cfd4d9da8af2efcced8.svg"
-              alt="Financial analytics dashboard illustration by tanrıca on Pixabay"
+              src="/my-image.png"
+              alt="Financial analytics dashboard illustration"
               className="hero-illustration"
               width="420"
               height="280"
@@ -171,8 +171,8 @@ function FileUpload({ onFileUpload, error }) {
 
         {/* Background network photo (decorative) */}
         <img
-          src="https://pixabay.com/get/g3fe8265de4cb64390a290e169fbf55c08cdf2a858f4b22276a46a667f23834e234e7e7d8027468b7fd471fda60a89745.jpg"
-          alt="technology network background by Developer_Console on Pixabay"
+          src="/bg-network.jpg"
+          alt="technology network background"
           className="hero-bg-photo"
           aria-hidden="true"
           width="800"

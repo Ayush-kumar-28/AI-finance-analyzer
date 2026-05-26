@@ -77,7 +77,8 @@ class OnlineLearner:
             df = pd.DataFrame(columns=['description', 'category', 'amount', 'timestamp'])
             df.to_csv(self.new_data_path, index=False)
         
-        # Add timestamp
+        # Add timestamp (work on a copy to avoid mutating caller's DataFrame)
+        transactions_df = transactions_df.copy()
         transactions_df['timestamp'] = datetime.now().isoformat()
         
         # Append to existing data

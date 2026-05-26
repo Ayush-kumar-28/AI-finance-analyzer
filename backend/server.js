@@ -179,7 +179,7 @@ app.post('/api/investment/advice', async (req, res) => {
   try {
     const { balance, income, expense } = req.body;
     
-    if (!balance || !income || !expense) {
+    if (balance === undefined || income === undefined || expense === undefined) {
       return res.status(400).json({
         error: 'Missing required fields',
         details: 'balance, income, and expense are required'

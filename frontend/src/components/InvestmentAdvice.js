@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './InvestmentAdvice.css';
+import config from '../config';
 
 function InvestmentAdvice({ financialData, onBack }) {
   const [advice, setAdvice] = useState(null);
@@ -11,8 +12,7 @@ function InvestmentAdvice({ financialData, onBack }) {
       setLoading(true);
       setError(null);
       try {
-        const apiUrl = process.env.REACT_APP_API_URL || '';
-        const response = await fetch(`${apiUrl}/api/investment/advice`, {
+        const response = await fetch(`${config.apiBaseUrl}${config.endpoints.investmentAdvice}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

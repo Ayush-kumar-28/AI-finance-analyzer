@@ -14,6 +14,7 @@ const config = {
     health: '/api/health',
     learningStats: '/api/learning/stats',
     learningRetrain: '/api/learning/retrain',
+    investmentAdvice: '/api/investment/advice',
   },
   
   // File upload settings

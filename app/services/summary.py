@@ -50,15 +50,15 @@ def calculate_summary(transactions_df):
                 total_expense += total
                 categories[category] = round(total, 2)
     
-    # Calculate balance (never show negative, show 0 instead)
+    # Calculate actual balance (allow negative to show real deficit)
     balance = total_income - total_expense
-    remaining_balance = max(0, balance)
+    remaining_balance = round(balance, 2)
     
     # Build JSON structure
     summary = {
         'income': round(total_income, 2),
         'expense': round(total_expense, 2),
-        'remaining_balance': round(remaining_balance, 2),
+        'remaining_balance': remaining_balance,
         'categories': categories
     }
     

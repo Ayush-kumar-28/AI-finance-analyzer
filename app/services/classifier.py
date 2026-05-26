@@ -117,13 +117,14 @@ class TransactionClassifier:
         
         return None, 0.0
     
-    def classify(self, text: str, return_confidence: bool = False) -> any:
+    def classify(self, text: str, return_confidence: bool = False, transaction_type: str = None) -> any:
         """
         Classify a single transaction description with optional confidence.
         
         Args:
             text: Raw transaction description
             return_confidence: If True, return (category, confidence) tuple
+            transaction_type: 'credit' or 'debit' if known (skips Income rule for debits)
             
         Returns:
             str: Predicted category, or
@@ -137,6 +138,12 @@ class TransactionClassifier:
         
         # Try rule-based classification first
         rule_category, rule_confidence = self.apply_rules(cleaned)
+        
+        # If transaction_type is known as debit, don't classify as Income/Cashback
+        if rule_category in ('Income', 'Cashback') and transaction_type == 'debit':
+            rule_category = None
+            rule_confidence = 0.0
+        
         if rule_category:
             return (rule_category, rule_confidence) if return_confidence else rule_category
         
@@ -164,13 +171,14 @@ class TransactionClassifier:
             print(f"⚠️  Classification error: {e}")
             return ('Others', 0.5) if return_confidence else 'Others'
     
-    def classify_batch(self, texts: List[str], return_confidence: bool = False) -> any:
+    def classify_batch(self, texts: List[str], return_confidence: bool = False, transaction_types: List[str] = None) -> any:
         """
         Classify multiple transaction descriptions efficiently.
         
         Args:
             texts: List of raw transaction descriptions
             return_confidence: If True, return list of (category, confidence) tuples
+            transaction_types: Optional list of 'credit'/'debit' per transaction
             
         Returns:
             List[str]: List of predicted categories, or
@@ -189,12 +197,20 @@ class TransactionClassifier:
         ml_texts = []
         
         for i, (original, cleaned) in enumerate(zip(texts, cleaned_texts)):
+            txn_type = transaction_types[i] if transaction_types and i < len(transaction_types) else None
+            
             if not cleaned:
                 results.append(('Others', 0.5) if return_confidence else 'Others')
                 continue
             
             # Try rule-based first
             rule_category, rule_confidence = self.apply_rules(cleaned)
+            
+            # Don't assign Income/Cashback to known debit transactions
+            if rule_category in ('Income', 'Cashback') and txn_type == 'debit':
+                rule_category = None
+                rule_confidence = 0.0
+            
             if rule_category:
                 results.append((rule_category, rule_confidence) if return_confidence else rule_category)
             else:

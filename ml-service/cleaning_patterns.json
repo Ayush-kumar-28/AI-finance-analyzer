@@ -199,12 +199,68 @@
       "file_examples": [
         "tmplsqmv8_9.xlsx"
       ]
+    },
+    "Format_12": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-05-22T11:49:04.912575",
+      "times_seen": 1,
+      "file_examples": [
+        "tmp8skf9pxd.xlsx"
+      ]
+    },
+    "Format_13": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-05-22T12:19:45.628068",
+      "times_seen": 1,
+      "file_examples": [
+        "tmpc2dwwx74.xlsx"
+      ]
+    },
+    "Format_14": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-05-22T13:38:39.735764",
+      "times_seen": 1,
+      "file_examples": [
+        "tmpxxmsuyel.xlsx"
+      ]
+    },
+    "Format_15": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-05-23T11:20:07.061466",
+      "times_seen": 1,
+      "file_examples": [
+        "tmpho56vk0c.xlsx"
+      ]
     }
   },
   "learned_patterns": [],
   "statistics": {
-    "files_processed": 12,
-    "formats_learned": 11,
-    "last_updated": "2026-04-04T17:12:21.731866"
+    "files_processed": 16,
+    "formats_learned": 15,
+    "last_updated": "2026-05-23T11:20:07.061821"
   }
 }

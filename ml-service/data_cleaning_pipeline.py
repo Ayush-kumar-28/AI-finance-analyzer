@@ -1025,7 +1025,11 @@ class DataCleaningPipeline:
         print(f"Original rows: {self.cleaning_stats['original_rows']}")
         print(f"Cleaned rows: {self.cleaning_stats['cleaned_rows']}")
         print(f"Removed rows: {self.cleaning_stats['removed_rows']}")
-        print(f"Retention rate: {(self.cleaning_stats['cleaned_rows'] / self.cleaning_stats['original_rows'] * 100):.1f}%")
+        if self.cleaning_stats['original_rows'] > 0:
+            retention = (self.cleaning_stats['cleaned_rows'] / self.cleaning_stats['original_rows'] * 100)
+            print(f"Retention rate: {retention:.1f}%")
+        else:
+            print("Retention rate: N/A")
         
         if self.cleaning_stats['cleaning_steps']:
             print("\nCleaning steps applied:")

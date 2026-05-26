@@ -213,7 +213,8 @@ async def analyze_file(file: UploadFile = File(...), db: Session = Depends(get_d
         
         # PIPELINE STEP 5: ML Classification
         print("\n🔹 STEP 5: ML CLASSIFICATION")
-        df['category'] = classifier.classify_batch(df['description'].tolist())
+        transaction_types = df['transaction_type'].tolist() if 'transaction_type' in df.columns else None
+        df['category'] = classifier.classify_batch(df['description'].tolist(), transaction_types=transaction_types)
         print(f"✅ Classification complete")
         
         # Update classifications in database

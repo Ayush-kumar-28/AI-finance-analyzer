@@ -80,10 +80,12 @@ function Dashboard({ data, onReset, onShowInvestmentAdvice }) {
     }
   };
 
-  const categoryData = Object.entries(categories).map(([name, value]) => ({
-    name,
-    value: parseFloat(value),
-  }));
+  const categoryData = Object.entries(categories)
+    .filter(([name]) => name !== 'Income' && name !== 'Cashback')
+    .map(([name, value]) => ({
+      name,
+      value: parseFloat(value),
+    }));
 
   const summaryData = [
     { name: 'Income',  value: parseFloat(income),  color: '#10B981' },
@@ -93,7 +95,7 @@ function Dashboard({ data, onReset, onShowInvestmentAdvice }) {
   const formatCurrency = (value) =>
     `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 
-  const isPositive = remaining_balance >= 0;
+  const isPositive = parseFloat(remaining_balance) >= 0;
 
   /* ---- Custom pie label ---- */
   const renderPieLabel = ({ name, percent }) => {
@@ -107,8 +109,8 @@ function Dashboard({ data, onReset, onShowInvestmentAdvice }) {
       <div className="dashboard-hero-banner">
         {/* background photo */}
         <img
-          src="https://pixabay.com/get/g3fe8265de4cb64390a290e169fbf55c08cdf2a858f4b22276a46a667f23834e234e7e7d8027468b7fd471fda60a89745.jpg"
-          alt="technology network background by Developer_Console on Pixabay"
+          src="/bg-network.jpg"
+          alt="technology network background"
           className="banner-bg-photo"
           aria-hidden="true"
           width="800"
@@ -149,14 +151,14 @@ function Dashboard({ data, onReset, onShowInvestmentAdvice }) {
         </div>
 
         <div className={`summary-card balance${isPositive ? '' : ' negative'}`}>
-          <div className="card-icon-wrap">{isPositive ? '✅' : '⚖️'}</div>
+          <div className="card-icon-wrap">{isPositive ? '✅' : '⚠️'}</div>
           <div className="card-content">
             <p className="card-label">Net Balance</p>
             <p
               className="card-value"
               style={{ color: isPositive ? 'var(--color-accent-green)' : 'var(--color-accent-red)' }}
             >
-              {formatCurrency(remaining_balance)}
+              {isPositive ? '' : '-'}{formatCurrency(Math.abs(parseFloat(remaining_balance)))}
             </p>
           </div>
         </div>
@@ -293,7 +295,8 @@ function Dashboard({ data, onReset, onShowInvestmentAdvice }) {
           {[...categoryData]
             .sort((a, b) => b.value - a.value)
             .map((category, index) => {
-              const percentage = (category.value / expense) * 100;
+              const totalExpense = parseFloat(expense) || 1;
+              const percentage = (category.value / totalExpense) * 100;
               return (
                 <div key={category.name} className="table-row">
                   <div className="table-cell">
