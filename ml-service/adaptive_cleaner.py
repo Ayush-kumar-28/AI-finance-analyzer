@@ -46,7 +46,7 @@ class AdaptiveDataCleaner:
                 ],
                 'credit': [
                     'credit', 'deposit', 'cr', 'received', 'deposited',
-                    'credit amount', 'deposits', 'receipt'
+                    'credit amount', 'deposits', 'receipt',
                 ],
                 'date': [
                     'date', 'transaction date', 'txn date', 'value date',

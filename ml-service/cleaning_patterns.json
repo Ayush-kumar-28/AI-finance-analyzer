@@ -255,12 +255,40 @@
       "file_examples": [
         "tmpho56vk0c.xlsx"
       ]
+    },
+    "Format_16": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-05-26T11:05:34.333920",
+      "times_seen": 1,
+      "file_examples": [
+        "tmpp7d7udl4.xlsx"
+      ]
+    },
+    "Format_17": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-05-26T11:35:15.564724",
+      "times_seen": 1,
+      "file_examples": [
+        "tmp_i2a17ko.xlsx"
+      ]
     }
   },
   "learned_patterns": [],
   "statistics": {
-    "files_processed": 16,
-    "formats_learned": 15,
-    "last_updated": "2026-05-23T11:20:07.061821"
+    "files_processed": 18,
+    "formats_learned": 17,
+    "last_updated": "2026-05-26T11:35:15.565085"
   }
 }
