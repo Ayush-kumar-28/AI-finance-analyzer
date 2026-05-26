@@ -123,7 +123,7 @@ class DatabaseManager:
                 and optionally 'confidence'
         """
         print(f"\n🔄 Updating classifications in database...")
-
+        print("process is done ");
         if 'id' not in df.columns:
             # Fallback: match by description + amount (less reliable)
             transactions = self.db.query(Transaction).filter(
@@ -270,3 +270,5 @@ class DatabaseManager:
 def get_db_manager(db_session: Session) -> DatabaseManager:
     """Factory function to create DatabaseManager instance"""
     return DatabaseManager(db_session)
+
+

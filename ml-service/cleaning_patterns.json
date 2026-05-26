@@ -283,12 +283,26 @@
       "file_examples": [
         "tmp_i2a17ko.xlsx"
       ]
+    },
+    "Format_18": {
+      "columns": [
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance"
+      ],
+      "first_seen": "2026-05-26T12:39:16.411875",
+      "times_seen": 1,
+      "file_examples": [
+        "tmpqluyq0_9.xlsx"
+      ]
     }
   },
   "learned_patterns": [],
   "statistics": {
-    "files_processed": 18,
-    "formats_learned": 17,
-    "last_updated": "2026-05-26T11:35:15.565085"
+    "files_processed": 19,
+    "formats_learned": 18,
+    "last_updated": "2026-05-26T12:39:16.412108"
   }
 }
