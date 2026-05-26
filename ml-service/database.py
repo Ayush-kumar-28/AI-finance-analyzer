@@ -3,8 +3,8 @@ Database configuration and models using SQLAlchemy ORM
 """
 
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, Text, Boolean
-from sqlalchemy.orm import sessionmaker, declarative_base
-from datetime import datetime
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
+from datetime import datetime, timezone
 import os
 from dotenv import load_dotenv
 
@@ -27,14 +27,16 @@ else:
 # Create session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Base class for models
-Base = declarative_base()
+
+# Base class for models (SQLAlchemy 2.x compatible)
+class Base(DeclarativeBase):
+    pass
 
 
 class Transaction(Base):
     """Transaction model for storing cleaned transactions"""
     __tablename__ = 'transactions'
-    
+
     id = Column(Integer, primary_key=True, index=True)
     file_id = Column(String(100), index=True, nullable=False)
     description = Column(Text, nullable=False)
@@ -42,8 +44,8 @@ class Transaction(Base):
     transaction_type = Column(String(10), nullable=True)  # 'credit' or 'debit'
     category = Column(String(50), nullable=True)
     confidence = Column(Float, nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
     def __repr__(self):
         return f"<Transaction(id={self.id}, description='{self.description[:30]}', amount={self.amount}, type={self.transaction_type})>"
 
@@ -51,7 +53,7 @@ class Transaction(Base):
 class UploadedFile(Base):
     """Model for tracking uploaded files"""
     __tablename__ = 'uploaded_files'
-    
+
     id = Column(String(100), primary_key=True)
     filename = Column(String(255), nullable=False)
     file_format = Column(String(10), nullable=False)
@@ -62,9 +64,9 @@ class UploadedFile(Base):
     retention_rate = Column(Float, nullable=False)
     quality_score = Column(Float, nullable=True)
     processing_time = Column(Float, nullable=True)
-    uploaded_at = Column(DateTime, default=datetime.utcnow)
+    uploaded_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     processed = Column(Boolean, default=False)
-    
+
     def __repr__(self):
         return f"<UploadedFile(id='{self.id}', filename='{self.filename}')>"
 
@@ -72,15 +74,15 @@ class UploadedFile(Base):
 class FinancialSummary(Base):
     """Model for storing financial summaries"""
     __tablename__ = 'financial_summaries'
-    
+
     id = Column(Integer, primary_key=True, index=True)
     file_id = Column(String(100), index=True, nullable=False)
     income = Column(Float, nullable=False)
     expense = Column(Float, nullable=False)
     remaining_balance = Column(Float, nullable=False)
     transaction_count = Column(Integer, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
     def __repr__(self):
         return f"<FinancialSummary(file_id='{self.file_id}', income={self.income}, expense={self.expense})>"
 
@@ -88,14 +90,14 @@ class FinancialSummary(Base):
 class CategoryBreakdown(Base):
     """Model for storing category-wise breakdown"""
     __tablename__ = 'category_breakdowns'
-    
+
     id = Column(Integer, primary_key=True, index=True)
     file_id = Column(String(100), index=True, nullable=False)
     category = Column(String(50), nullable=False)
     amount = Column(Float, nullable=False)
     transaction_count = Column(Integer, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
     def __repr__(self):
         return f"<CategoryBreakdown(file_id='{self.file_id}', category='{self.category}', amount={self.amount})>"
 

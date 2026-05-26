@@ -57,9 +57,16 @@ app = FastAPI(
 )
 
 # Configure CORS
+# Explicit origins are required when allow_credentials=True;
+# browsers reject the wildcard + credentials combination.
+ALLOWED_ORIGINS = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:3000,http://localhost:5000"
+).split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -108,6 +115,11 @@ async def get_categories():
 
 @app.post("/analyze")
 async def analyze_file(file: UploadFile = File(...), db: Session = Depends(get_db)):
+    if classifier is None or cleaning_pipeline is None:
+        raise HTTPException(
+            status_code=503,
+            detail="ML service is not ready. Model or pipeline failed to initialize."
+        )
     """
     Analyze bank statement file and return financial summary
     
@@ -299,11 +311,16 @@ async def analyze_file(file: UploadFile = File(...), db: Session = Depends(get_d
         if temp_file and os.path.exists(temp_file):
             try:
                 os.unlink(temp_file)
-            except:
-                pass
+            except Exception as cleanup_err:
+                print(f"⚠️  Failed to delete temp file {temp_file}: {cleanup_err}")
 
 @app.post("/classify")
 async def classify_text(data: dict):
+    if classifier is None:
+        raise HTTPException(
+            status_code=503,
+            detail="ML service is not ready. Model failed to initialize."
+        )
     """
     Classify a single transaction description
     
