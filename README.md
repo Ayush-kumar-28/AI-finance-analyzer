@@ -251,4 +251,4 @@ MIT License - feel free to use this project for learning or commercial purposes.
 
 **Built with ❤️ for better financial management**
 
-🌟 Star this repo if you find it helpful!
+⭐ Star this repo if you find it helpful!
